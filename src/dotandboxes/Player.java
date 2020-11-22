@@ -1,5 +1,7 @@
 package dotandboxes;
 
+import java.util.Scanner;
+
 public class Player {
 	public Player() {
 		
@@ -7,6 +9,15 @@ public class Player {
 	private String name;
 	private int age;
 	private int point;
+	
+	public int chooseEgde() {
+		System.out.println("chon canh ngang nhap 0 canh doc nhap 1");
+		Scanner sc = new Scanner(System.in);
+		int canh = sc.nextInt();
+		sc.close();
+		return canh;
+	}
+
 	
 	public String getName() {
 		return this.name;
