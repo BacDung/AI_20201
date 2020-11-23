@@ -1,16 +1,59 @@
 package dotandboxes;
 
-import java.util.Scanner;
+
 
 public class Game {
 	public Game(int dot) {
-		this.chessboard = new Cheesboard(dot);
+		this.chessboard = new Chessboard(dot);
 		this.player1 = new Player();
 		this.ai = new Ai();
 	}
-	private Cheesboard chessboard;
+	private Chessboard chessboard;
 	private Player player1;
 	private Player ai;
+	
+	private void play(Player player) {
+		int a = player.chooseEgde();
+		int x, y;
+		do {
+			x = player.chooseCoordinates("x");
+			y = player.chooseCoordinates("y");
+			if(!chessboard.checkEgde(a, x, y))
+				System.out.println("cạnh đó đã được chọn vui lòng nhập lại: ");
+		}
+		while(!chessboard.checkEgde(a, x, y));
+		chessboard.chooseEdge(a, x, y);
+		chessboard.updateBox(1);
+		
+	}
+	
+	public void start() { 
+		play(player1);
+		chessboard.printHEdge();
+		chessboard.printVEdge();
+		chessboard.printBox();
+		play(ai);
+		chessboard.printHEdge();
+		chessboard.printVEdge();
+		chessboard.printBox();
+		
+	}
+	
+	public static void main(String[] args) {
+		Game a = new Game(5);
+		a.start();
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	//chon canh
 //	public int chooseEgde() {
 //		 Scanner sc = new Scanner(System.in);
@@ -53,7 +96,5 @@ public class Game {
 //		if(canh == 1)
 //			chessboard.chooseVEdge(chooseCoordinates());
 //	}	
-	public static void main(String[] args) {
-	
-	}
+
 }

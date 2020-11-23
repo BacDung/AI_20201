@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
-encoding//src/dotandboxes/Cheesboard.java=UTF-8
+encoding//src/dotandboxes/Chessboard.java=UTF-8
+encoding//src/dotandboxes/Game.java=UTF-8
+encoding//src/dotandboxes/Player.java=UTF-8

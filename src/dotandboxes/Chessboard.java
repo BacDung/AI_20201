@@ -1,14 +1,14 @@
 package dotandboxes;
 
 
-public class Cheesboard {
+public class Chessboard {
 	
 	final static int BLANK = 0;
 	final static int POINTX = 1;
 	final static int POINTY = 2;
 	
 	
-	public Cheesboard(int dot) {
+	public Chessboard(int dot) {
 		setDot(dot);
 		hEdge = new Edge[dot - 1][dot];
 		vEdge = new Edge[dot][dot - 1];
@@ -24,47 +24,35 @@ public class Cheesboard {
 	private Edge[][] vEdge;
 //	private int x;
 //	private int y;
-	
-	public static void main(String[] args) {
-		Cheesboard a = new Cheesboard(5);
-		a.chooseHEdge(0, 0);
-		a.updateBox(POINTX);
-		a.chooseVEdge(0, 0);
-		a.updateBox(POINTY);
-		a.chooseHEdge(0, 1);
-		a.updateBox(POINTX);
-		a.chooseVEdge(1, 0);
-		a.updateBox(POINTY);
-		a.printBox();
 		
+
+	
+	public void chooseEdge(int a, int x, int y) {
+		if(a == 0)
+			hEdge[x][y].setTick(true);
+		else
+			vEdge[x][y].setTick(true);
 	}
 	
 
 	
-	public void chooseHEdge(int x, int y) {
-		hEdge[x][y].setTick(true);
-	}
-	
-	public void chooseVEdge(int x, int y) {
-		vEdge[x][y].setTick(true);
-	}
-	
-	public boolean checkHEgde(int x, int y) {
-		if(hEdge[x][y].getTick() == true) {
-			System.out.println("Cạnh đấy được trọn rồi ông nội");
-			return false;
+	public boolean checkEgde(int a, int x, int y) {
+		if(a == 0) {
+			if(hEdge[x][y].getTick() == true) {
+				return false;
+			}
+			else
+				return true;
 		}
-		else
-			return true;
-	}
-	public boolean checkVEgde(int x, int y) {
-		if(vEdge[x][y].getTick() == true) {
-			System.out.println("Cạnh đấy được trọn rồi ông nội");
-			return false;
+		else {
+			if(vEdge[x][y].getTick() == true) {
+				return false;
+			}
+			else
+				return true;
 		}
-		else
-			return true;
 	}
+
 	
 	// update lại bàn cờ sau mỗi nước đi
 	public void updateBox(int player) {
