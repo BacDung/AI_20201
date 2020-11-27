@@ -30,7 +30,9 @@ public class Game {
 	public void start() { 
 		play(player1);
 		chessboard.printHEdge();
+		System.out.println();
 		chessboard.printVEdge();
+		System.out.println();
 		chessboard.printBox();
 		play(ai);
 		chessboard.printHEdge();
