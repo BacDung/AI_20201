@@ -23,22 +23,71 @@ public class Game {
 		}
 		while(!chessboard.checkEgde(a, x, y));
 		chessboard.chooseEdge(a, x, y);
-		chessboard.updateBox(1);
 		
+	}
+	private boolean checkNext(int x_or_y) {
+		if(chessboard.updateBox(x_or_y)) {
+			return true;
+		}
+		return false;
+	}
+	private boolean checkwin() {
+		if(player1.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
+			System.out.println(player1.getName() + " là người chiến thắng ");
+			return true;
+		}
+		if(ai.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
+			System.out.println(ai.getName() + " là người chiến thắng ");
+			return true;
+		}
+		return false;
 	}
 	
 	public void start() { 
-		play(player1);
-		chessboard.printHEdge();
-		System.out.println();
-		chessboard.printVEdge();
-		System.out.println();
-		chessboard.printBox();
-		play(ai);
-		chessboard.printHEdge();
-		chessboard.printVEdge();
-		chessboard.printBox();
 		
+		while(!checkwin()) {
+			play(player1);
+			chessboard.printHEdge();
+			System.out.println();
+			chessboard.printVEdge();
+			System.out.println();
+			chessboard.printBox();
+			while(chessboard.updateBox(1)) {;
+				play(player1);
+				chessboard.printHEdge();
+				System.out.println();
+				chessboard.printVEdge();
+				System.out.println();
+				chessboard.printBox();
+			}
+			play(ai);
+			chessboard.printHEdge();
+			System.out.println();
+			chessboard.printVEdge();
+			System.out.println();
+			chessboard.printBox();
+			while(chessboard.updateBox(2)) {
+				play(ai);
+				chessboard.printHEdge();
+				System.out.println();
+				chessboard.printVEdge();
+				System.out.println();
+				chessboard.printBox();
+			}
+		}
+		
+		
+//		play(player1);
+//		chessboard.printHEdge();
+//		System.out.println();
+//		chessboard.printVEdge();
+//		System.out.println();
+//		chessboard.printBox();
+//		play(ai);
+//		chessboard.printHEdge();
+//		chessboard.printVEdge();
+//		chessboard.printBox();
+//		
 	}
 	
 	public static void main(String[] args) {

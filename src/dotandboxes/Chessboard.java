@@ -55,12 +55,15 @@ public class Chessboard {
 
 	
 	// update lại bàn cờ sau mỗi nước đi
-	public void updateBox(int player) {
+	public boolean updateBox(int x_or_y) {
 		for(int i = 0; i < dot - 1; i++) 
 			for(int j = 0; j < dot - 1; j++) {
-				if(hEdge[i][j].getTick() == true && hEdge[i][j + 1].getTick() == true && vEdge[i][j].getTick() == true && vEdge[i + 1][j].getTick() == true )
-					this.box[i][j] = player;
+				if(hEdge[i][j].getTick() == true && hEdge[i][j + 1].getTick() == true && vEdge[i][j].getTick() == true && vEdge[i + 1][j].getTick() == true ) {
+					this.box[i][j] = x_or_y;
+					return true;
+				}
 			}
+		return false;
 	}
 	
 	
