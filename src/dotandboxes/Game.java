@@ -1,7 +1,6 @@
 package dotandboxes;
 
 
-
 public class Game {
 	public Game(int dot) {
 		this.chessboard = new Chessboard(dot);
@@ -47,31 +46,17 @@ public class Game {
 		
 		while(!checkwin()) {
 			play(player1);
-			chessboard.printHEdge();
-			System.out.println();
-			chessboard.printVEdge();
-			System.out.println();
+			chessboard.updateBox(2);
 			chessboard.printBox();
 			while(chessboard.updateBox(1)) {;
 				play(player1);
-				chessboard.printHEdge();
-				System.out.println();
-				chessboard.printVEdge();
-				System.out.println();
 				chessboard.printBox();
 			}
 			play(ai);
-			chessboard.printHEdge();
-			System.out.println();
-			chessboard.printVEdge();
-			System.out.println();
+			chessboard.updateBox(2);
 			chessboard.printBox();
 			while(chessboard.updateBox(2)) {
 				play(ai);
-				chessboard.printHEdge();
-				System.out.println();
-				chessboard.printVEdge();
-				System.out.println();
 				chessboard.printBox();
 			}
 		}
