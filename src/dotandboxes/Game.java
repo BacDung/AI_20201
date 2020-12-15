@@ -5,11 +5,13 @@ public class Game {
 	public Game(int dot) {
 		this.chessboard = new Chessboard(dot);
 		this.player1 = new Player();
-		this.ai = new Ai();
+		player1.setId(Chessboard.RED);
 	}
 	private Chessboard chessboard;
 	private Player player1;
 	private Player ai;
+	
+	private AlphaBetaSolver solver = new AlphaBetaSolver();
 	
 	private void play(Player player) {
 		int a = player.chooseEgde();
@@ -21,9 +23,15 @@ public class Game {
 				System.out.println("cạnh đó đã được chọn vui lòng nhập lại: ");
 		}
 		while(!chessboard.checkEgde(a, x, y));
-		chessboard.chooseEdge(a, x, y);
-		
+		chessboard.chooseEdge(a, x, y, player.getId());	
 	}
+	
+	private void AIPlay() {
+		Edge e = solver.getNextMove(chessboard, 1 - player1.getId());
+		System.out.println(e.isHorizontal() + " " + e.getX() + " " + e.getY());
+		chessboard.chooseEdge(e.isHorizontal() ? 0 : 1, e.getX(), e.getY(), 1 - player1.getId());
+	}
+	
 	private boolean checkNext(int x_or_y) {
 		if(chessboard.updateBox(x_or_y)) {
 			return true;
@@ -35,44 +43,37 @@ public class Game {
 			System.out.println(player1.getName() + " là người chiến thắng ");
 			return true;
 		}
-		if(ai.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
+		/*if(ai.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
 			System.out.println(ai.getName() + " là người chiến thắng ");
 			return true;
-		}
+		}*/
 		return false;
 	}
 	
 	public void start() { 
-		
 		while(!checkwin()) {
-			play(player1);
-			chessboard.updateBox(2);
-			chessboard.printBox();
-			while(chessboard.updateBox(1)) {;
+			do {
 				play(player1);
 				chessboard.printBox();
-			}
-			play(ai);
-			chessboard.updateBox(2);
-			chessboard.printBox();
-			while(chessboard.updateBox(2)) {
-				play(ai);
+			} while(chessboard.updateBox(Chessboard.RED));
+			do {
+				AIPlay();
 				chessboard.printBox();
-			}
+			} while(chessboard.updateBox(Chessboard.BLUE));
 		}
 		
-		
-//		play(player1);
-//		chessboard.printHEdge();
-//		System.out.println();
-//		chessboard.printVEdge();
-//		System.out.println();
-//		chessboard.printBox();
-//		play(ai);
-//		chessboard.printHEdge();
-//		chessboard.printVEdge();
-//		chessboard.printBox();
-//		
+		/*play(player1);
+		chessboard.printHEdge();
+		System.out.println();
+		chessboard.printVEdge();
+		System.out.println();
+		chessboard.printBox();
+		AIPlay();
+		chessboard.printHEdge();
+		System.out.println();
+		chessboard.printVEdge();
+		System.out.println();
+		chessboard.printBox();*/
 	}
 	
 	public static void main(String[] args) {

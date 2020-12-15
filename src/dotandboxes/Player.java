@@ -8,6 +8,7 @@ public class Player {
 		setAge(20);
 		setPoint(0);
 	}
+	private int id;
 	private String name;
 	private int age;
 	private int point;
@@ -31,6 +32,10 @@ public class Player {
 		System.out.println(c + b + d);
 	}
 	
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getName() {
 		return this.name;
 	}
@@ -40,6 +45,11 @@ public class Player {
 	public int getPoint() {
 		return this.point;
 	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
