@@ -1,28 +1,27 @@
 package dotandboxes;
 
-
 public class Game {
+	private Chessboard chessboard;
+	private Player player1;
+	private Player ai;
+	private AlphaBetaSolver solver = new AlphaBetaSolver();
+
 	public Game(int dot) {
 		this.chessboard = new Chessboard(dot);
 		this.player1 = new Player();
 		player1.setId(Chessboard.RED);
 	}
-	private Chessboard chessboard;
-	private Player player1;
-	private Player ai;
-	
-	private AlphaBetaSolver solver = new AlphaBetaSolver();
 	
 	private void play(Player player) {
-		int a = player.chooseEgde();
+		int a = player.chooseEdge();
 		int x, y;
 		do {
 			x = player.chooseCoordinates("x");
 			y = player.chooseCoordinates("y");
-			if(!chessboard.checkEgde(a, x, y))
+			if (chessboard.checkEdge(a, x, y)) {
 				System.out.println("cạnh đó đã được chọn vui lòng nhập lại: ");
-		}
-		while(!chessboard.checkEgde(a, x, y));
+			}
+		} while(chessboard.checkEdge(a, x, y));
 		chessboard.chooseEdge(a, x, y, player.getId());	
 	}
 	
@@ -33,17 +32,14 @@ public class Game {
 	}
 	
 	private boolean checkNext(int x_or_y) {
-		if(chessboard.updateBox(x_or_y)) {
-			return true;
-		}
-		return false;
+		return chessboard.updateBox(x_or_y);
 	}
-	private boolean checkwin() {
-		if(player1.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
+	private boolean checkWin() {
+		if (player1.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
 			System.out.println(player1.getName() + " là người chiến thắng ");
 			return true;
 		}
-		/*if(ai.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
+		/* if(ai.getPoint() == (chessboard.getDot() - 1)/2 + 1) {
 			System.out.println(ai.getName() + " là người chiến thắng ");
 			return true;
 		}*/
@@ -51,15 +47,15 @@ public class Game {
 	}
 	
 	public void start() { 
-		while(!checkwin()) {
+		while (!checkWin()) {
 			do {
 				play(player1);
 				chessboard.printBox();
-			} while(chessboard.updateBox(Chessboard.RED));
+			} while (chessboard.updateBox(Chessboard.RED));
 			do {
 				AIPlay();
 				chessboard.printBox();
-			} while(chessboard.updateBox(Chessboard.BLUE));
+			} while (chessboard.updateBox(Chessboard.BLUE));
 		}
 		
 		/*play(player1);
@@ -77,8 +73,8 @@ public class Game {
 	}
 	
 	public static void main(String[] args) {
-		Game a = new Game(5);
-		a.start();
+		Game game = new Game(4);
+		game.start();
 	}	
 	
 	
@@ -92,7 +88,7 @@ public class Game {
 	
 	
 	//chon canh
-//	public int chooseEgde() {
+//	public int chooseEdge() {
 //		 Scanner sc = new Scanner(System.in);
 //		 System.out.println("chon canh ngang nhap 0 chon canh doc nhap 1");
 //		 int a = sc.nextInt();
@@ -127,7 +123,7 @@ public class Game {
 //			return true;
 //	}
 //	public void start() {
-//		int canh = chooseEgde();
+//		int canh = chooseEdge();
 //		if(canh == 0)
 //			chooseHEdge(chooseCoordinates());
 //		if(canh == 1)

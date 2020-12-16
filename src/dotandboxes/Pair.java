@@ -1,12 +1,17 @@
 package dotandboxes;
 
-public class Pair implements Comparable<Pair>{
-    private int utility ;
+public class Pair implements Comparable<Pair> {
+    private int utility;
     private Edge edge;
 
     Pair(Edge edge, int utility) {
-        this.edge = edge ;
-        this.utility = utility ;
+        this.edge = edge;
+        this.utility = utility;
+    }
+
+    @Override
+    public int compareTo(Pair pair) {
+        return this.utility - pair.utility;
     }
 
     int getUtility() {
@@ -20,12 +25,8 @@ public class Pair implements Comparable<Pair>{
     void setEdge(Edge edge) {
         this.edge = edge ;
     }
+
     void setUtility(int utility) {
         this.utility = utility ;
-    }
-
-    @Override
-    public int compareTo(Pair pair) {
-        return this.utility - pair.utility;
     }
 }

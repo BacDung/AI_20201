@@ -9,14 +9,16 @@ public abstract class GameSolver {
 
     protected int heuristic(final Chessboard board, int color) {
         int value;
-        if(referenceColor == Chessboard.RED)
+        if(referenceColor == Chessboard.RED) {
             value = cScore * board.getRedScore() - cScore * board.getBlueScore();
-        else
+        } else {
             value = cScore * board.getBlueScore() - cScore * board.getRedScore();
-        if(referenceColor == color)
+        }
+        if (referenceColor == color) {
             value += cThree * board.getBoxCount(3) - cTwo * board.getBoxCount(2);
-        else
+        } else {
             value -= cThree * board.getBoxCount(3) - cTwo * board.getBoxCount(2);
+        }
         return value;
     }
 
