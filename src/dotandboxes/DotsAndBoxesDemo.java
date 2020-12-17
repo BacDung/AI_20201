@@ -1,6 +1,6 @@
+package dotandboxes;
 
 import java.awt.Color;
-import java.util.Random;
 import javax.swing.JOptionPane;
 
 /*
@@ -480,31 +480,24 @@ public class DotsAndBoxesDemo extends javax.swing.JFrame {
         getContentPane().add(vEdge34, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, -1, -1));
 
         box03.setEditable(false);
-        box03.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box03, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 100, 100));
 
         box13.setEditable(false);
-        box13.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, 100, 100));
 
         box23.setEditable(false);
-        box23.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box23, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 280, 100, 100));
 
         box30.setEditable(false);
-        box30.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box30, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 100, 100));
 
         box31.setEditable(false);
-        box31.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box31, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 100, 100));
 
         box32.setEditable(false);
-        box32.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box32, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 390, 100, 100));
 
         box33.setEditable(false);
-        box33.setBackground(new java.awt.Color(240, 240, 240));
         getContentPane().add(box33, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 100, 100));
 
         pack();
@@ -1844,25 +1837,22 @@ public class DotsAndBoxesDemo extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DotsAndBoxesDemo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DotsAndBoxesDemo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DotsAndBoxesDemo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(DotsAndBoxesDemo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DotsAndBoxesDemo().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new DotsAndBoxesDemo().setVisible(true);
         });
     }
 
