@@ -183,6 +183,28 @@ public class Chessboard implements Cloneable {
 		}
 		return count;
 	}
+        
+        public Edge nextMove() {
+            for(int i = 0; i < dot - 1; i++) {
+                for(int j = 0; j < dot - 1; j++) {
+                    if (getEdgeCount(i, j) == 3) {
+                        if (!checkEdge(0, i, j)) {
+                            return new Edge(i, j, true);
+                        }
+                        if (!checkEdge(0, i, j + 1)) {
+                            return new Edge(i, j+1, true);
+                        }
+                        if (!checkEdge(1, i, j)) {
+                            return new Edge(i, j, false);
+                        }
+                        if (!checkEdge(1, i + 1, j)) {
+                            return new Edge(i + 1, j, false);
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
 	public int getBoxCount(int sides) {
 		int count = 0;

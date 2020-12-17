@@ -505,7 +505,12 @@ public class DotsAndBoxesDemo extends javax.swing.JFrame {
 
     public void checkEndGame() {
         if (countStep == 0) {
-            String result = "Trò chơi đã kết thúc!\n Điểm của người chơi 1: " + point1Label.getText() + ".\nĐiểm của người chơi 2: " + point2Label.getText() + ".\nNgười chơi " + ((Integer.parseInt(point1Label.getText()) > Integer.parseInt(point2Label.getText())) ? "1" : "2") + " chiến thắng.";
+            String result = "Trò chơi đã kết thúc!\n Điểm của người chơi 1: " + point1Label.getText() + ".\nĐiểm của người chơi 2: " + point2Label.getText() + ".\n";
+            if (Integer.parseInt(point1Label.getText()) != Integer.parseInt(point2Label.getText())) {
+                result += "Người chơi " + ((Integer.parseInt(point1Label.getText()) > Integer.parseInt(point2Label.getText())) ? "1" : "2") + " chiến thắng.";
+            } else {
+                result += "Trận đấu có kết quả hòa.";
+            }
             JOptionPane.showMessageDialog(this, result, "Kết quả", JOptionPane.INFORMATION_MESSAGE);
         }
     }

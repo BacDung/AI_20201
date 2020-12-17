@@ -10,10 +10,18 @@ public class AlphaBetaSolver extends GameSolver {
     private long startTime;
     private final long MOVE_TIME = 1900000000;
 
+    /**
+     *
+     * @param board
+     * @param color
+     * @return
+     */
+    @Override
     public Edge getNextMove(Chessboard board, int color) {
+//        if (board.getBoxCount(3) != 0) return board.nextMove();
         startTime = System.nanoTime();
         referenceColor = color ;
-        maxLevel = 1;
+        maxLevel = 4;
         Edge best = null;
         while(maxLevel <= board.getAvailableMoves().size()) {
             Pair pair = dfs(board, color, MIN, MAX, 0) ;
